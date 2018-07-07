@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 
 	res.render('hello', {
 		name: 'wes',
+		title: "Now that's delicioius",
 		dog: req.query.dog
 	});
 });
