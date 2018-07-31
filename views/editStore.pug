@@ -4,7 +4,8 @@ include mixins/_storeForm
 
 block content
     .inner
+        pre= h.dump(store)
         h2  #{title} 
-        +storeForm({'name':'Tim Horton'})
+        +storeForm(store)
         
         
