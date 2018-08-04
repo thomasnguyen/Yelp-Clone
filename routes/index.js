@@ -7,6 +7,8 @@ router.get('/', catchErrors(storeController.getStores));
 router.get('/stores', catchErrors(storeController.getStores));
 router.get('/add', storeController.addStore);
 
+router.get('/store/:slug', catchErrors(storeController.getStoreBySlug));
+
 router.post(
 	'/add',
 	storeController.upload,

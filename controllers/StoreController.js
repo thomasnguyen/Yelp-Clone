@@ -68,6 +68,15 @@ exports.editStore = async (req, res) => {
 	res.render('editStore', { title: `Edit ${store.name}`, store });
 };
 
+exports.getStoreBySlug = async (req, res, next) => {
+	const store = await Store.findOne({ slug: req.params.slug });
+	if (!store) {
+		next();
+		return;
+	}
+	res.json(store);
+};
+
 exports.updateStore = async (req, res) => {
 	// set the location data to be a point
 	req.body.location.type = 'Point';
