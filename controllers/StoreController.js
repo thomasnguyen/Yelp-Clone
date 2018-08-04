@@ -74,7 +74,7 @@ exports.getStoreBySlug = async (req, res, next) => {
 		next();
 		return;
 	}
-	res.json(store);
+	res.render('store', { store });
 };
 
 exports.updateStore = async (req, res) => {
