@@ -83,7 +83,7 @@ function autocomplete(input, latInput, lngInput) {
 	dropdown.addListener('place_changed', function () {
 		var place = dropdown.getPlace();
 		latInput.value = place.geometry.location.lat();
-		lngInput.value = place.geometry.location.lat();
+		lngInput.value = place.geometry.location.lng();
 
 		console.log(place);
 
