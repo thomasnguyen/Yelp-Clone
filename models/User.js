@@ -22,6 +22,9 @@ const userSchema = new Schema({
 	}
 });
 
+userSchema.virtual('gravatar').get(function() {
+	return 'http://www.pngmart.com/files/3/The-Rock-PNG-Transparent-Image.png';
+});
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 userSchema.plugin(mongodbErrorHandler);
 
