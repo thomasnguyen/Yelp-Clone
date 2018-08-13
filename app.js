@@ -12,6 +12,7 @@ const expressValidator = require('express-validator');
 const routes = require('./routes/index');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
+require('./handlers/passport');
 
 // create our Express app
 const app = express();
@@ -35,13 +36,15 @@ app.use(cookieParser());
 
 // Sessions allow us to store data on visitors from request to request
 // This keeps users logged in and allows us to send flash messages
-app.use(session({
-  secret: process.env.SECRET,
-  key: process.env.KEY,
-  resave: false,
-  saveUninitialized: false,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
+app.use(
+	session({
+		secret: process.env.SECRET,
+		key: process.env.KEY,
+		resave: false,
+		saveUninitialized: false,
+		store: new MongoStore({ mongooseConnection: mongoose.connection })
+	})
+);
 
 // // Passport JS is what we use to handle our logins
 app.use(passport.initialize());
@@ -52,17 +55,17 @@ app.use(flash());
 
 // pass variables to our templates + all requests
 app.use((req, res, next) => {
-  res.locals.h = helpers;
-  res.locals.flashes = req.flash();
-  res.locals.user = req.user || null;
-  res.locals.currentPath = req.path;
-  next();
+	res.locals.h = helpers;
+	res.locals.flashes = req.flash();
+	res.locals.user = req.user || null;
+	res.locals.currentPath = req.path;
+	next();
 });
 
 // promisify some callback based APIs
 app.use((req, res, next) => {
-  req.login = promisify(req.login, req);
-  next();
+	req.login = promisify(req.login, req);
+	next();
 });
 
 // After allllll that above middleware, we finally handle our own routes!
@@ -76,8 +79,8 @@ app.use(errorHandlers.flashValidationErrors);
 
 // Otherwise this was a really bad error we didn't expect! Shoot eh
 if (app.get('env') === 'development') {
-  /* Development Error Handler - Prints stack trace */
-  app.use(errorHandlers.developmentErrors);
+	/* Development Error Handler - Prints stack trace */
+	app.use(errorHandlers.developmentErrors);
 }
 
 // production error handler
