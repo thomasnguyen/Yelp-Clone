@@ -36,5 +36,6 @@ router.get('/logout', AuthController.logout);
 
 router.get('/account', AuthController.isLoggedIn, AuthController.account);
 router.post('/account', AuthController.isLoggedIn, catchErrors(AuthController.updateAccount));
+router.post('/account/forgot', catchErrors(AuthController.forgot));
 
 module.exports = router;
