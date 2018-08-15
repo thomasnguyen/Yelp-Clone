@@ -63,7 +63,7 @@ exports.forgot = async (req, res) => {
 
 	// 3. Send Email with the token
 	const resetUrl = `http://${req.headers.host}.account/reset/${user.resetPasswordToken}`;
-	req.flash('success', `You have been emailed a password reset link!`);
+	req.flash('success', `You have been emailed a password reset link! ${resetUrl}`);
 	// 4. Redirect to login page
 	res.redirect('/login');
 };
