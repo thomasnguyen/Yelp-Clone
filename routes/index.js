@@ -45,4 +45,6 @@ router.get('/api/stores/near', catchErrors(storeController.mapStores));
 
 router.get('/map', storeController.mapPage);
 router.post('/api/stores/:id/heart', catchErrors(storeController.heartStore));
+
+router.get('/hearts', AuthController.isLoggedIn, storeController.getHearts);
 module.exports = router;
