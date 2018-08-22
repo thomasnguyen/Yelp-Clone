@@ -82,7 +82,7 @@ exports.getStoreBySlug = async (req, res, next) => {
 	if (!store) {
 		return next();
 	}
-	res.render('store', { store });
+	res.render('store', { title: store.name, store });
 };
 
 exports.updateStore = async (req, res) => {
