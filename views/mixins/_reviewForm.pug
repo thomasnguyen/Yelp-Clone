@@ -1,11 +1,11 @@
 mixin reviewForm(store)
-    form.reviewer(action=`/reviews/${store}` method="POST")
+    form.reviewer(action=`/reviews/${store._id}` method="POST")
         textarea(name="text" placeholder = "Did you try this places? Have something to say? Leave a review...")
 
         .reviewer__meta
             .reviewer__stars
                 each num in [5,4,3,2,1]
-                    input(type="radio" required id=`star${num}` name="rating"
+                    input(type="radio" required id=`stars${num}` name="rating"
                             value=num)
                     label(for=`stars${num}`) #{num} Stars
             input.button(type="submit" value="Submit Review")

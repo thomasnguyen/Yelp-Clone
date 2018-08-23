@@ -3,6 +3,7 @@ const router = express.Router();
 const storeController = require('../controllers/StoreController');
 const userController = require('../controllers/userController');
 const AuthController = require('../controllers/AuthController');
+const reviewController = require('../controllers/reviewController');
 
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -47,4 +48,5 @@ router.get('/map', storeController.mapPage);
 router.post('/api/stores/:id/heart', catchErrors(storeController.heartStore));
 
 router.get('/hearts', AuthController.isLoggedIn, storeController.getHearts);
+router.post('/reviews/:id', AuthController.isLoggedIn, catchErrors(reviewController.addReview));
 module.exports = router;
