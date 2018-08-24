@@ -49,4 +49,7 @@ router.post('/api/stores/:id/heart', catchErrors(storeController.heartStore));
 
 router.get('/hearts', AuthController.isLoggedIn, storeController.getHearts);
 router.post('/reviews/:id', AuthController.isLoggedIn, catchErrors(reviewController.addReview));
+
+router.get('/top', storeController.getTopStores);
+
 module.exports = router;

@@ -171,3 +171,9 @@ exports.getHearts = async (req, res) => {
 
 	res.render('hearts', { title: 'Your hearted stores!', heartedStores });
 };
+
+exports.getTopStores = async (req, res) => {
+	const stores = await Store.getTopStores();
+	//res.json(stores);
+	res.render('topStores', { stores, title: 'Top Stores!' });
+};
