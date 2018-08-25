@@ -9,6 +9,8 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 router.get('/', catchErrors(storeController.getStores));
 router.get('/stores', catchErrors(storeController.getStores));
+router.get('/stores/page/:page', catchErrors(storeController.getStores));
+
 router.get('/add', AuthController.isLoggedIn, storeController.addStore);
 
 router.get('/store/:slug', catchErrors(storeController.getStoreBySlug));
